@@ -22,14 +22,15 @@ export class LoginComponent implements OnInit {
     private cookieService: CookieService,
     private router: Router,
     private progressBar: NgProgress
-  ) {
-    this.LoginForm = new FormGroup({
+  ) { 
+    // constructor should be used only as a Dependency Injection as much as possible
+    }
+
+  ngOnInit() {
+      this.LoginForm = new FormGroup({
       email: new FormControl(''),
       password: new FormControl('')
     });
-  }
-
-  ngOnInit() {
     if(this.progressBar.isStarted()){
       this.progressBar.complete();
     }
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(data).pipe(
       map(data => {
         return data.json();
-      })
+      }) // why? as a default it should return json
     ).subscribe(data => {
       this.progressBar.complete();
       this.cookieService.set('api_token', data['token']);

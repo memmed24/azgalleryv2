@@ -1,0 +1,140 @@
+<form [formGroup]="updateForm" (submit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="container">
+        <h1>Əsər</h1>
+        <div class="form-group">
+          <label for="">Ad</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Ad">
+        </div>
+        <div class="form-group">
+          <label for="">Hündürlük</label>
+          <input type="text" class="form-control" formControlName="height"  placeholder="Hündürlük">
+        </div>
+        <div class="form-group">
+          <label for="">En</label>
+          <input type="text" class="form-control" formControlName="width" placeholder="En">
+        </div>
+        <div class="form-group">
+          <label for="">İnventor nömrəsi</label>
+          <input type="text" class="form-control" formControlName="inventory_number" placeholder="İnventor nömrəsi">
+        </div>
+
+        <div class="form-group">
+          <label for="">Vəziyyəti</label>
+          <input type="text" class="form-control" formControlName="condition" placeholder="Vəziyyəti">
+        </div>
+
+        <div class="form-group">
+          <label for="">Sayı</label>
+          <input type="text" class="form-control" formControlName="amount" placeholder="Sayı">
+        </div>
+
+        <div class="form-group">
+          <label for="">Qiyməti AZN</label>
+          <input type="text" class="form-control" formControlName="price_azn" placeholder="Qiyməti AZN">
+        </div>
+
+        <div class="form-group">
+          <label for="">Qiyməti Rubl</label>
+          <input type="text" class="form-control" formControlName="price_rubl" placeholder="Qiyməti Rubl">
+        </div>
+
+        <div class="form-group">
+          <label for="">Yaradılma tarixi</label>
+          <input type="date" class="form-control" formControlName="created" placeholder="Qiyməti AZN">
+        </div>
+
+        <div class="form-group">
+          <label for="">Stellaj</label>
+          <input type="text" class="form-control" formControlName="rack" placeholder="Stellaj">
+        </div>
+
+       <div class="form-group">
+          <label for="">Rəssam</label>
+          <select formControlName="artist_id" class="form-control">
+            <option value="{{artist.id}}" *ngFor="let artist of artists">{{artist.name}}</option>
+          </select>
+        </div>
+ 
+        <div class="form-group">
+          <label for="">Kateqoriya</label>
+          <select formControlName="category_id" class="form-control">
+            <option *ngFor="let category of categories" value="{{category['id']}}">{{category['name']}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="">Saxlanıldığı ölkə</label>
+          <select formControlName="country_id" class="form-control" (change)="onCountryChange()">
+            <option *ngFor="let country of countries" value="{{country['id']}}" >{{country.name}}</option>
+          </select>
+        </div> 
+
+        <div class="form-group">
+          <label for="">Saxlanıldığı şəhər</label>
+          <select formControlName="city_id" class="form-control">
+            <option *ngFor="let city of cities; let i = index"  value="{{city.id}}" >{{city.name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="">Material</label>
+          <select formControlName="material_id" class="form-control">
+            <option *ngFor="let material of materials;" value="{{material.id}}" >{{material.name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="">Fond</label>
+          <select formControlName="fond_id" class="form-control">
+            <option *ngFor="let fond of fonds;" value="{{fond.id}}" >{{fond.name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="">Info</label>
+          <textarea formControlName="info" class="form-control"></textarea>
+        </div>
+<!-- 
+        <div class="form-group">
+          <label for="">Foto</label>
+          <input type="file" (change)="uploadImage($event)" formControlName="photo">
+        </div>   -->
+
+        <button type="submit" class="btn btn-lg btn-primary">Redakte et</button>
+
+
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="container">
+        <h1>Sənəd</h1>
+        <div class="form-group">
+          <label for="">Sənədi göndərənin adı soyadı</label>
+          <input type="text" class="form-control" formControlName="from" placeholder="Adı soyadı">
+        </div>
+        <div class="form-group">
+          <label for="">Sənədi qəbul edənin adı soyadı</label>
+          <input type="text" class="form-control" formControlName="to" placeholder="Adı soyadı">
+        </div>
+        <div class="form-group">
+          <label for="">Nömrəsi</label>
+          <input type="text" class="form-control" formControlName="number" placeholder="Nömrəsi">
+        </div>
+        <div class="form-group">
+          <label for="">İmzalanma vaxtı</label>
+          <input type="date" class="form-control" formControlName="signed_date" placeholder="Nömrəsi">
+        </div>
+        <div class="form-group">
+          <label for="">Sened növü</label>
+          <select formControlName="type" class="form-control">
+            <option *ngFor="let type of contract_types; let i = index" value="{{i}}" >{{type}}</option>
+          </select>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+</form>

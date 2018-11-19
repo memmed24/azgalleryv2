@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="float-left">
+      <h5>Kateqoiyalar</h5>
+
+    </div>
+    <div class="float-right">
+      <ng-template #content let-modal>
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Yeni kateqoriya</h5>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form (submit)="onSubmit()" [formGroup]="createForm">
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label for="">Ad</label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Ad">
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-dismiss="modal">Yarat</button>
+          </div>
+        </form>
+      </ng-template>
+
+      <button class="btn btn-outline-primary" (click)="open(content)">Yeni kateqoriya</button>
+    </div>
+  </div>
+</div>
+
+<div class="row asset-container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Kateqoiyalar</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <td>{{category['name']}}</td>
+        <td>
+          <ng-template #cntry let-modal>
+
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Redakte et</h5>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form [formGroup]="updateForm" (submit)="update(category['id'])">
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="">Ad</label>
+                  <input type="text" class="form-control" formControlName="name" value="{{category['name']}}">
+                </div>
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Redakte et</button>
+              </div>
+            </form>
+          </ng-template>
+
+          <button class="btn btn-primary btn-sm" style="margin-right: 10px;" (click)="open(cntry)">
+            <i class="fa fa-pencil"></i>
+          </button>
+
+          <button class="btn btn-danger btn-sm" (click)="delete(category['id'])">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

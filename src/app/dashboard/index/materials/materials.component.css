@@ -1,0 +1,25 @@
+.asset-container{
+  height: 250px;
+  border: 1px solid #e3e3e3;
+  overflow: hidden;
+  /* overflow-X: scroll; */
+  overflow-y: scroll;
+  border-radius: 5px;
+}
+.asset-container::-webkit-scrollbar{
+  width: 5px;
+}
+/* Track */
+.asset-container::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+.asset-container::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+.asset-container::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}

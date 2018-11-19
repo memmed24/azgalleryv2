@@ -1,0 +1,43 @@
+<div class="container main">
+
+    <app-site-search (query)="search($event)"></app-site-search>
+
+
+
+
+    <div class=row>
+
+        <div class="col-md-4" [@fadeIn]="" *ngFor="let artwork of artworks; let i = index">
+            <div class="card mb-4 artwork">
+                <img *ngIf=artwork.photo  src="http://localhost:3000/images/artworks/{{artwork.photo}}" class="card-img-top"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h2 class="card-title">
+                        {{artwork.name}}
+                    </h2>
+                    <p class="card-text" *ngIf="artwork.artist">
+                        <b>Ressam: </b> <a href="">{{artwork.artist.name}}</a>
+                    </p>
+                    <p class="card-text" *ngIf=artwork.fond>
+                        <b>Fond:</b> Boş</p>
+                    <p class="card-text" *ngIf="artwork.price_azn || artwork.price_rubl">
+                        <b>Qiyməti:</b> {{artwork.price_azn}} / {{artwork.price_rubl}} (AZN / RUBL)</p>
+                    <input type="checkbox" name="artwork" class="art_id" value="15" />Çap <br>
+
+
+                    <br>
+                    <a href="http://collectionazgallery.az/art/15" class="btn btn-primary">Daha çox &rarr;</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class=row>
+        <div class="col-md-2 offset-md-5 animations">
+            <button class="btn btn-xs btn-primary" [@fadeOut]="fadeOut" [@fadeIn]="fadeIn" (click)="loadButtonOnClick()">Load
+                more</button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,12 @@
+.artwork {
+  cursor: pointer;
+  transition: 200ms all linear;
+  box-shadow:  0 0 10px #e3e3e3;
+}
+.artwork:hover {
+  transform: scale(1.09)
+}
+
+.main {
+  padding-bottom: 40px;
+}

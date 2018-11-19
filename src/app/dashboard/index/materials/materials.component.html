@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="float-left">
+      <h3>Materials</h3>
+
+    </div>
+    <div class="float-right">
+      <ng-template #content let-modal>
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Yeni material</h5>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form (submit)="onSubmit()" [formGroup]="createForm">
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label for="">Ad</label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Ad">
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-dismiss="modal">Yarat</button>
+          </div>
+        </form>
+      </ng-template>
+
+      <button class="btn btn-outline-primary" (click)="open(content)">Yeni material</button>
+    </div>
+  </div>
+</div>
+
+<div class="row asset-container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Materials</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let material of materials">
+        <td>{{material['name']}}</td>
+        <td>
+          <ng-template #cntry let-modal>
+
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Redakte et</h5>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form [formGroup]="updateForm" (submit)="update(material['id'])">
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="">Ad</label>
+                  <input type="text" class="form-control" formControlName="name" value="{{material['name']}}">
+                </div>
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Redakte et</button>
+              </div>
+            </form>
+          </ng-template>
+
+          <button class="btn btn-primary btn-sm" style="margin-right: 10px;" (click)="open(cntry)">
+            <i class="fa fa-pencil"></i>
+          </button>
+
+          <button class="btn btn-danger btn-sm" (click)="delete(material['id'])">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

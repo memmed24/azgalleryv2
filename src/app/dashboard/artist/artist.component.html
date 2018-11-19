@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-md-10">
+    <h1>Rəssamlar</h1>
+  </div>
+  <div class="col-md-2" style="padding-top: 10px">
+
+    <ng-template #content let-modal>
+      <form [formGroup]="ArtistCreate" (submit)="create()">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Yeni rəssam</h5>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-group">
+              <label for="">Ad</label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Ad">
+            </div>
+            <div class="form-group">
+              <label for="">Soyad</label>
+              <input type="text" class="form-control" formControlName="surname" placeholder="Soyad">
+            </div>
+            <div class="form-group">
+              <label for="">Doğum günü</label>
+              <input type="date" class="form-control" formControlName="birthday">
+            </div>
+            <div class="form-group">
+              <input type="file" (change)="uploadImage($event)" formControlName="photo">
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary"  data-dismiss="modal">Save changes</button>
+        </div>
+      </form>
+    </ng-template>
+
+    <button class="btn btn-outline-primary" (click)="open(content)">Yeni Rəssam</button>
+  </div>
+
+
+</div>
+<table class="table">
+  <thead class="" style="background: linear-gradient(120deg, #00e4d0, #5983e8);">
+    <tr>
+      <th scope="col" style="color: white">Ad</th>
+      <th scope="col" style="color: white">Soyad</th>
+      <th scope="col" style="color: white">Foto</th>
+      <th scope="col" style="color: white">Doğum günü</th>
+      <th scope="col" style="color: white">Əməliyyatlar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let artist of Artists">
+      <td>{{artist.name}}</td>
+      <td>{{artist.surname}}</td>
+      <td>
+        <img *ngIf="artist.photo" src="http://localhost:3000/images/artists/{{artist.photo}}" style="height: 100px" alt="">
+      </td>
+      <td>{{artist.birthday}}</td>
+      <td>
+        <a routerLink="edit/{{artist.id}}" class="btn btn-sm btn-primary" style="margin-right: 5px;">
+          <i class="fa fa-pencil"></i>
+        </a>
+        <button class="btn btn-sm btn-danger" (click)="delete(artist.id)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

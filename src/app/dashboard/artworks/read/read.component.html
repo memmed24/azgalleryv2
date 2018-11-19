@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-10">
+    <h1>Əsərlər</h1>
+  </div>
+  <div class="col-md-2">
+    <a routerLink="create" class="btn btn-outline-primary">Yeni əsər</a>
+  </div>
+</div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" (click)="paginator('previous')">Əvvəlki</a></li>
+      <li class="page-item" [ngClass]="(i + 1) === current_page ? 'active' : ''" *ngFor="let page of pages; let i = index" (click)="changePage(i + 1)"><a class="page-link">{{i + 1}}</a></li>
+      <li class="page-item"><a class="page-link" (click)="paginator('next')">Növbəti</a></li>
+    </ul>
+  </nav>
+<table class="table">
+  <thead class="" style="background: linear-gradient(120deg, #00e4d0, #5983e8);">
+    <tr>
+      <th scope="col" style="color: white">Ad</th>
+      <th scope="col" style="color: white">İnventor nömrəsi</th>
+      <th scope="col" style="color: white">Material</th>
+      <th scope="col" style="color: white">Foto</th>
+      <th scope="col" style="color: white">Əməliyyatlar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let artwork of artworks">
+      <td>{{artwork['name']}}</td>
+      <td>{{artwork['inventory_number']}}</td>
+      <td>
+        <span *ngIf="artwork['material']">{{artwork['material']['name']}}</span>
+      </td>
+      <td>
+        <img *ngIf="artwork.photo" src="{{url}}/images/artworks/{{artwork.photo}}"  style="height: 100px" alt="">
+      </td>
+      <td>
+        <a class="btn btn-sm btn-success" style="margin-right: 5px;">
+          <i class="fa fa-info"></i>
+        </a>
+        <a class="btn btn-sm btn-primary" routerLink="update/{{artwork.id}}" style="margin-right: 5px;">
+          <i class="fa fa-pencil"></i>
+        </a>
+        <button class="btn btn-sm btn-danger" (click)="delete(artwork.id)">
+          <i class="fa fa-trash"></i>
+        </button>
+
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,6 +1,7 @@
 import { ConfigService } from './config/config.service';
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+// import { Http, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
@@ -11,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthService {
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private config: ConfigService,
     private cookieService: CookieService
   ) { }
